@@ -4,301 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gmarket - Admin Dashboard</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
-
-        body {
-            background-color: #f4f6f9;
-            color: #333;
-            padding: 15px;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            padding: 15px;
-        }
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .header-title {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .header-title h2 {
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        .avatar-circle {
-            width: 32px;
-            height: 32px;
-            background-color: #2563eb;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 14px;
-        }
-
-        .user-info {
-            text-align: right;
-        }
-
-        .user-name {
-            font-weight: 600;
-            font-size: 14px;
-        }
-
-        .user-role {
-            font-size: 11px;
-            color: #6b7280;
-        }
-
-        .user-balance-label {
-            font-size: 12px;
-            color: #6b7280;
-        }
-
-        .user-balance-amount {
-            color: #10b981;
-            font-weight: 700;
-            font-size: 14px;
-        }
-
-        .nav-tabs {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin: 15px 0;
-            justify-content: center;
-        }
-
-        .tab-btn {
-            padding: 8px 14px;
-            border-radius: 8px;
-            border: none;
-            background: transparent;
-            color: #4b5563;
-            font-size: 13px;
-            font-weight: 500;
-            cursor: pointer;
-        }
-
-        .tab-btn.active {
-            background-color: #dbeafe;
-            color: #1d4ed8;
-            font-weight: 600;
-        }
-
-        .content-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-top: 20px;
-            margin-bottom: 15px;
-        }
-
-        .section-title {
-            font-size: 22px;
-            font-weight: 700;
-            line-height: 1.2;
-        }
-
-        .total-users {
-            font-size: 13px;
-            color: #6b7280;
-            margin-top: 4px;
-        }
-
-        .btn-create {
-            background-color: #1d4ed8;
-            color: white;
-            border: none;
-            padding: 10px 16px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 13px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .search-box {
-            position: relative;
-            margin-bottom: 15px;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 10px 12px 10px 36px;
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
-            font-size: 13px;
-            outline: none;
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #9ca3af;
-        }
-
-        .user-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .user-table th {
-            text-align: left;
-            padding: 10px;
-            font-size: 11px;
-            color: #6b7280;
-            background-color: #f9fafb;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .user-table td {
-            padding: 12px 10px;
-            border-bottom: 1px solid #f3f4f6;
-        }
-
-        .user-row {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .user-avatar {
-            width: 36px;
-            height: 36px;
-            background-color: #e5e7eb;
-            color: #4b5563;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            font-size: 14px;
-        }
-
-        .user-details .name {
-            font-weight: 600;
-            font-size: 14px;
-            color: #111827;
-        }
-
-        .user-details .email {
-            font-size: 12px;
-            color: #6b7280;
-        }
-    </style>
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
+<body class="bg-gray-50 font-sans antialiased">
 
-    <div class="container">
-        <div class="header">
-            <div class="header-title">
-                <h2>Admin Dashboard</h2>
-                <div class="avatar-circle">H</div>
+    <div class="min-h-screen flex">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white border-r border-gray-200 hidden md:block">
+            <div class="p-6">
+                <h1 class="text-xl font-bold text-gray-800">Gmarket Admin</h1>
             </div>
-            <div class="user-info">
-                <div>
-                    <span class="user-name">htetshar</span>
-                    <span class="user-balance-label"> Balance</span>
+            <nav class="mt-2">
+                <a href="#" class="flex items-center px-6 py-3 text-blue-600 bg-blue-50 border-r-4 border-blue-600 font-medium">Users</a>
+                <a href="#" class="flex items-center px-6 py-3 text-gray-600 hover:bg-gray-50 font-medium">Wallets</a>
+                <a href="#" class="flex items-center px-6 py-3 text-gray-600 hover:bg-gray-50 font-medium">Products</a>
+                <a href="#" class="flex items-center px-6 py-3 text-gray-600 hover:bg-gray-50 font-medium">Settings</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col">
+            <!-- Header -->
+            <header class="bg-white border-b border-gray-200 h-16 flex items-center justify-between px-6">
+                <span class="text-lg font-semibold text-gray-700">User Management</span>
+                <div class="flex items-center space-x-3">
+                    <span class="text-sm text-gray-600">Admin</span>
                 </div>
-                <div>
-                    <span class="user-role">ADMIN</span>
-                    <span class="user-balance-amount"> $20000.00</span>
+            </header>
+
+            <!-- Content Body -->
+            <main class="p-6 flex-1">
+                <div class="bg-white rounded-lg shadow border border-gray-200 overflow-hidden">
+                    <div class="p-4 border-b border-gray-200 font-semibold text-gray-700">Users List</div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-gray-50 border-b border-gray-200 text-xs text-gray-500 uppercase">
+                                    <th class="p-4">Name</th>
+                                    <th class="p-4">Email</th>
+                                    <th class="p-4">Role</th>
+                                    <th class="p-4">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200 text-sm text-gray-600">
+                                <tr>
+                                    <td class="p-4 font-medium text-gray-800">Mg Mg</td>
+                                    <td class="p-4">mgmg@example.com</td>
+                                    <td class="p-4">User</td>
+                                    <td class="p-4"><span class="px-2 py-1 text-xs bg-green-100 text-green-700 rounded-full">Active</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-medium text-gray-800">Aung Aung</td>
+                                    <td class="p-4">aungaung@example.com</td>
+                                    <td class="p-4">User</td>
+                                    <td class="p-4"><span class="px-2 py-1 text-xs bg-green-100 text-green-700 rounded-full">Active</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
+            </main>
         </div>
-
-        <div class="nav-tabs">
-            <button class="tab-btn active">Users</button>
-            <button class="tab-btn">Wallets</button>
-            <button class="tab-btn">Levels</button>
-            <button class="tab-btn">Products</button>
-            <button class="tab-btn">Deposits</button>
-            <button class="tab-btn">Withdrawals</button>
-            <button class="tab-btn">Chats</button>
-            <button class="tab-btn">Customer Service</button>
-            <button class="tab-btn">Statistics</button>
-            <button class="tab-btn">Slider</button>
-            <button class="tab-btn">Settings</button>
-            <button class="tab-btn">Documents</button>
-        </div>
-
-        <div class="content-header">
-            <div>
-                <div class="section-title">Users Management</div>
-                <div class="total-users">Total users: 847</div>
-            </div>
-            <button class="btn-create">
-                <span>+</span> Create User
-            </button>
-        </div>
-
-        <div class="search-box">
-            <span class="search-icon">🔍</span>
-            <input type="text" class="search-input" placeholder="Search by username, email, or referral code">
-        </div>
-
-        <table class="user-table">
-            <thead>
-                <tr>
-                    <th>USER</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <div class="user-row">
-                            <div class="user-avatar">T</div>
-                            <div class="user-details">
-                                <div class="name">Thaw Tar</div>
-                                <div class="email">thaw231@gmail.com</div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="user-row">
-                            <div class="user-avatar">M</div>
-                            <div class="user-details">
-                                <div class="name">Myat Noe hdi</div>
-                                <div class="email">myatnoe@gmail.com</div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
     </div>
 
 </body>
     </html>
-    
