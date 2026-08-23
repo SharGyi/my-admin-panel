@@ -1,36 +1,313 @@
 <!DOCTYPE html>
-<html lang="my">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G-Market Admin Panel</title>
+    <title>Gmarket - Admin Dashboard</title>
     <style>
-        body { font-family: sans-serif; background: #1a1a2e; color: #fff; padding: 20px; }
-        .card { background: #16213e; padding: 20px; border-radius: 8px; max-width: 400px; margin: 0 auto; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-        h2 { color: #00fff5; text-align: center; }
-        label { display: block; margin-top: 15px; font-size: 14px; }
-        input, button { width: 100%; padding: 12px; margin: 8px 0; border-radius: 5px; border: none; box-sizing: border-box; }
-        input { background: #0f3460; color: #fff; font-size: 16px; }
-        button { background: #00fff5; color: #000; font-weight: bold; font-size: 16px; cursor: pointer; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+            padding: 15px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            padding: 15px;
+        }
+
+        /* Header Area */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .header-title h2 {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .avatar-circle {
+            width: 32px;
+            height: 32px;
+            background-color: #2563eb;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .user-info {
+            text-align: right;
+        }
+
+        .user-name {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .user-role {
+            font-size: 11px;
+            color: #6b7280;
+        }
+
+        .user-balance-label {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .user-balance-amount {
+            color: #10b981;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        /* Tabs Menu */
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 15px 0;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            padding: 8px 14px;
+            border-radius: 8px;
+            border: none;
+            background: transparent;
+            color: #4b5563;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .tab-btn.active {
+            background-color: #dbeafe;
+            color: #1d4ed8;
+            font-weight: 600;
+        }
+
+        /* Content Section */
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-top: 20px;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .total-users {
+            font-size: 13px;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+
+        .btn-create {
+            background-color: #1d4ed8;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Search Bar */
+        .search-box {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px 12px 10px 36px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 13px;
+            outline: none;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+        }
+
+        /* User List Table */
+        .user-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .user-table th {
+            text-align: left;
+            padding: 10px;
+            font-size: 11px;
+            color: #6b7280;
+            background-color: #f9fafb;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .user-table td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .user-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            background-color: #e5e7eb;
+            color: #4b5563;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .user-details .name {
+            font-weight: 600;
+            font-size: 14px;
+            color: #111827;
+        }
+
+        .user-details .email {
+            font-size: 12px;
+            color: #6b7280;
+        }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h2>Admin Dashboard</h2>
-        <p style="text-align:center; color:#bbb;">User အကောင့် ထိန်းချုပ်ရန်</p>
-        
-        <label>User Balance (USDT):</label>
-        <input type="number" id="balanceInput" value="939.10">
-        
-        <button onclick="updateBalance()">Balance ပြင်ဆင်မည်</button>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-title">
+                <h2>Admin Dashboard</h2>
+                <div class="avatar-circle">Z</div>
+            </div>
+            <div class="user-info">
+                <div>
+                    <span class="user-name">Zichen</span>
+                    <span class="user-balance-label"> Balance</span>
+                </div>
+                <div>
+                    <span class="user-role">ADMIN</span>
+                    <span class="user-balance-amount"> $20000.00</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="tab-btn active">Users</button>
+            <button class="tab-btn">Wallets</button>
+            <button class="tab-btn">Levels</button>
+            <button class="tab-btn">Products</button>
+            <button class="tab-btn">Deposits</button>
+            <button class="tab-btn">Withdrawals</button>
+            <button class="tab-btn">Chats</button>
+            <button class="tab-btn">Customer Service</button>
+            <button class="tab-btn">Statistics</button>
+            <button class="tab-btn">Slider</button>
+            <button class="tab-btn">Settings</button>
+            <button class="tab-btn">Documents</button>
+        </div>
+
+        <!-- Content Section Header -->
+        <div class="content-header">
+            <div>
+                <div class="section-title">Users Management</div>
+                <div class="total-users">Total users: 847</div>
+            </div>
+            <button class="btn-create">
+                <span>+</span> Create User
+            </button>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-input" placeholder="Search by username, email, or referral code">
+        </div>
+
+        <!-- Users Table -->
+        <table class="user-table">
+            <thead>
+                <tr>
+                    <th>USER</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="user-row">
+                            <div class="user-avatar">T</div>
+                            <div class="user-details">
+                                <div class="name">Thaw Tar</div>
+                                <div class="email">thaw231@gmail.com</div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="user-row">
+                            <div class="user-avatar">M</div>
+                            <div class="user-details">
+                                <div class="name">Myat Noe hdi</div>
+                                <div class="email">myatnoe@gmail.com</div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
-    <script>
-        function updateBalance() {
-            let val = document.getElementById('balanceInput').value;
-            alert('Balance ကို ' + val + '$ သို့ ပြင်ဆင်လိုက်ပါပြီ');
-        }
-    </script>
 </body>
-  </html>
-  
+</html>
