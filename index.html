@@ -4,22 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gmarket - Admin Dashboard</title>
-    <!-- Tailwind CSS CDN for styling -->
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body class="bg-gray-50 font-sans antialiased">
 
-    <div class="min-h-screen flex">
+    <div class="min-h-screen flex flex-col md:flex-row">
         <!-- Sidebar -->
-        <aside class="w-64 bg-white border-r border-gray-200 hidden md:block">
+        <aside class="w-full md:w-64 bg-white border-b md:border-b-0 md:border-r border-gray-200">
             <div class="p-6">
                 <h1 class="text-xl font-bold text-gray-800">Gmarket Admin</h1>
             </div>
-            <nav class="mt-2">
-                <a href="#" class="flex items-center px-6 py-3 text-blue-600 bg-blue-50 border-r-4 border-blue-600 font-medium">Users</a>
-                <a href="#" class="flex items-center px-6 py-3 text-gray-600 hover:bg-gray-50 font-medium">Wallets</a>
-                <a href="#" class="flex items-center px-6 py-3 text-gray-600 hover:bg-gray-50 font-medium">Products</a>
-                <a href="#" class="flex items-center px-6 py-3 text-gray-600 hover:bg-gray-50 font-medium">Settings</a>
+            <nav class="flex md:flex-col overflow-x-auto">
+                <a href="#" class="px-6 py-3 text-blue-600 bg-blue-50 md:border-r-4 border-blue-600 font-medium whitespace-nowrap">Users</a>
+                <a href="#" class="px-6 py-3 text-gray-600 hover:bg-gray-50 font-medium whitespace-nowrap">Wallets</a>
+                <a href="#" class="px-6 py-3 text-gray-600 hover:bg-gray-50 font-medium whitespace-nowrap">Products</a>
+                <a href="#" class="px-6 py-3 text-gray-600 hover:bg-gray-50 font-medium whitespace-nowrap">Settings</a>
             </nav>
         </aside>
 
@@ -69,4 +69,4 @@
     </div>
 
 </body>
-    </html>
+</html>
